@@ -1,34 +1,145 @@
-<!-- projects/shopping-portal.html -->
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Shopping Portal | Your Name</title>
-  <link rel="stylesheet" href="../styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General Styling */
+    body {
+      font-family: 'Arial', sans-serif; /* Modern font */
+      background-color: #f9f9f9; /* Softer background */
+      color: #444; /* Slightly softer text color */
+      padding: 30px; /* Increased padding */
+      line-height: 1.6; /* Improved readability */
+    }
+
+    h1, h2 {
+      color: #34495e; /* Darker, more professional heading color */
+      font-weight: 600; /* Slightly bolder headings */
+    }
+
+    h1 {
+      font-size: 2.75rem; /* Slightly larger */
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    }
+
+    h2 {
+      font-size: 2.2rem; /* Slightly larger */
+      margin-top: 40px; /* Increased spacing */
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd; /* Subtle underline */
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 12px 0; /* Increased spacing */
+      font-size: 1.15rem; /* Slightly larger */
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500; /* Slightly less bold */
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    /* Style for Icons */
+    i {
+      margin-right: 8px; /* Slightly reduced spacing */
+      font-size: 1.2rem; /* Adjusted size */
+      color: #3498db; /* Changed to a blue tone */
+      transition: color 0.3s ease;
+    }
+
+    i:hover {
+      color: #2980b9;
+    }
+
+    /* Live Demo & Source Code links */
+    .demo-link {
+      color: #27ae60;
+      font-size: 1.2rem;
+      text-decoration: none; /* keep underline */
+    }
+
+    .demo-link:hover {
+      color: #2ecc71;
+      text-decoration: underline; /* keep underline */
+    }
+
+    .code-link {
+      color: #c0392b;
+      font-size: 1.2rem;
+      text-decoration: none; /* keep underline */
+    }
+
+    .code-link:hover {
+      color: #e74c3c;
+      text-decoration: underline; /* keep underline */
+    }
+
+    /* Improved spacing and layout */
+    main {
+      max-width: 900px; /* Limit content width */
+      margin: 0 auto; /* Center the content */
+    }
+
+    /* Subtle box shadow for visual separation */
+    main {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    }
+  </style>
 </head>
+
 <body>
-  <header>
-    <h1>Shopping Portal</h1>
-  </header>
   <main>
-    <p>A comprehensive shopping portal built with React.js, Node.js, and SQL Server.</p>
-    <h2>Features</h2>
+    <h1><i class="fas fa-shopping-cart"></i> Book Selling Portal</h1>
+    <p>A feature-rich shopping portal built with <strong>React.js, Node.js, and SQL Server</strong>, designed for a seamless book-buying experience.</p>
+
+    <h2><i class="fas fa-star"></i> Features</h2>
     <ul>
-      <li>Dynamic product listings with real-time search and filtering.</li>
-      <li>User authentication and secure payment processing.</li>
-      <li>Responsive design for seamless user experience across devices.</li>
+        <li><strong>End-to-End Payments Integration</strong> – Secure <strong>Stripe-powered</strong> checkout for seamless transactions.</li>
+        <li><strong>Dynamic Product Listings</strong> – Real-time <strong>search and filtering</strong> for an optimized shopping experience.</li>
+        <li><strong>User Authentication & Security</strong> – <strong>JWT-based authentication</strong> ensures data security.</li>
+        <li><strong>Shopping Cart & Order Management</strong> – Add books to cart, modify quantities, and track purchases.</li>
+        <li><strong>Responsive Design</strong> – Fully optimized for <strong>desktop and tablet</strong> users.</li>
     </ul>
-    <h2>Technologies Used</h2>
-    <p>React.js, Node.js, Express, SQL Server, RESTful APIs.</p>
-    <h2>Challenges & Learnings</h2>
-    <p>Optimized backend performance, implemented robust security protocols, and enhanced frontend responsiveness.</p>
-    <h2>Live Demo</h2>
-    <p><a href="https://cubes786.github.io/showcase/shopping-portal">View the Live Application</a></p>
-    <h2>Source Code</h2>
-    <p><a href="https://github.com/cubes786/git/tree/main/vscode/showcase/react-nodejs/book-selling-app">GitHub Repository</a></p>
+
+    <h2><i class="fas fa-wrench"></i> Technologies Used</h2>
+    <p><strong>Frontend:</strong> React.js, Bootstrap</p>
+    <p><strong>Backend:</strong> Node.js, Express</p>
+    <p><strong>Database:</strong> SQL Server</p>
+    <p><strong>Authentication:</strong> JWT (JSON Web Tokens)</p>
+    <p><strong>Payments:</strong> Stripe API</p>
+    <p><strong>API Architecture:</strong> RESTful APIs (authenticated via Bearer tokens)</p>
+
+    <h2><i class="fas fa-graduation-cap"></i> Challenges & Learnings</h2>
+    <ul>
+        <li><strong>Payments integration</strong> – smooth checkout experience.</li>
+        <li><strong>Optimized Backend Performance</strong> – Streamlined database queries for faster load times.</li>
+        <li><strong>Enhanced Security</strong> – Implemented <strong>secure authentication & authorization</strong> best practices.</li>
+        <li><strong>Improved UI/UX</strong> – Designed a <strong>smooth, responsive</strong>, and intuitive shopping experience.</li>
+    </ul>
+
+    <!-- New Section for Live Demo -->
+    <h2><i class="fas fa-desktop"></i> Live Demo</h2>
+    <p>Check out the live demo of the Book Selling Portal:</p>
+    <a href="https://cubes786.github.io/showcase/shopping-portal" class="demo-link" target="_blank">Live Demo</a>
+
+    <!-- New Section for Source Code -->
+    <h2><i class="fab fa-github"></i> Source Code</h2>
+    <p>You can view and contribute to the source code on GitHub:</p>
+    <a href="https://github.com/cubes786/git/tree/main/vscode/showcase/react-nodejs/book-selling-app" class="code-link" target="_blank">Source Code</a>
   </main>
-  <footer>
-    <p><a href="../index.html">Back to Home</a></p>
-  </footer>
 </body>
-</html>
