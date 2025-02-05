@@ -5,24 +5,83 @@
   <title>Cubes786 | Full Stack Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <header>
-    <h1>Hi, I'm Cubes786!</h1>
-    <p>A full stack developer passionate about turning ideas into reality.</p>
+    <div class="header-content">
+      <img src="your-profile-image.jpg" alt="Cubes786" class="profile-image">  
+      <h1>Hi, I'm Cubes786!</h1>
+      <p>A full-stack developer passionate about crafting innovative and efficient solutions.</p>
+      <div class="social-links">
+        <a href="https://github.com/cubes786" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
   </header>
-  <nav>
-    <ul>
-      <li><a href="projects/shopping-portal.html">Shopping Portal</a></li>
-      <li><a href="projects/var-calculator.html">Var Calculator</a></li>
-      <li><a href="projects/micrograd-implementation.html">Micrograd Implementation</a></li>
-    </ul>
-  </nav>
+
   <main>
-    <!-- Optional: Add sections like About Me, Skills, Contact -->
+    <section id="projects">
+      <h2><i class="fas fa-folder-open"></i> Projects</h2>
+      <div class="project-list">
+        <div class="project-card">
+          <h3>Shopping Portal</h3>
+          <p>A feature-rich e-commerce platform built with React, Node.js, and SQL Server.</p>
+          <a href="projects/shopping-portal.html" class="project-link">Learn More</a>
+        </div>
+
+        <div class="project-card">          
+          <h3>Market Risk Var for US Treasuries portfolio Calculator</h3>
+          <p>A C# .net Thick client with Python Restful APIs application for calculating variance and standard deviation.</p>
+          <a href="projects/var-calculator.html" class="project-link">Learn More</a>
+        </div>
+
+        <div class="project-card">
+          <h3>Micrograd Implementation</h3>
+          <p>A mini implementation of a gradient descent library using Python/Pytorch, showcasing deep learning principles.</p>
+          <a href="projects/micrograd-implementation.html" class="project-link">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2><i class="fas fa-user"></i> About Me</h2>
+      <p>I am a highly motivated and results-oriented full-stack developer with a strong passion for building innovative and efficient solutions.  I have vast experience with a variety of technologies working for large US Asset managers and am always eager to learn new things and tackle challenging problems.</p>
+    </section>
+
+    <section id="skills">
+        <h2><i class="fas fa-code"></i> Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3><i class="fas fa-language"></i> Languages</h3>
+                <p>Python, C#, C++, JavaScript</p>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-tools"></i> Frameworks & Libraries</h3>
+                <p>Intex/ADCO, PyTorch/LangFlow/Astra/Dash, TensorFlow, React/NodeJS, Fast API/Dask</p>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-database"></i> Databases, Platforms & Cloud</h3>
+                <p>MSSQL/Redshift/Cassandra/Pinecone/GraphQL, Windows/RHEL, AWS/Azure</p>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-wrench"></i> Tools & DevOps</h3>
+                <p>Git, JIRA/Workfront, Azure DevOps/TeamCity, Power BI/Tableau, Salesforce, Docker/K8, Apache Spark/ETL pipeline, SNS/SQS/Kinesis/Kafka</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+      <h2><i class="fas fa-envelope"></i> Contact</h2>
+      <p>Feel free to reach out to me via email at <a href="mailto:quantdguy@gmail.com">quantdguy@gmail.com</a>.</p>
+    </section>
+
   </main>
+
   <footer>
-    <p>Connect with me on <a href="https://github.com/cubes786">GitHub</a></p>
+    <p>© 2024 Cubes786. All rights reserved.</p>
   </footer>
 </body>
 </html>
