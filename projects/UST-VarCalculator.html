@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UST Portfolio Market Risk VaR Calculator</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      color: #444;
+      padding: 30px;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2 {
+      color: #34495e;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 12px 0;
+      font-size: 1.15rem;
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, text-decoration: 0.3s ease;
+    }
+
+    a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    /* Style for Icons */
+    i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+      color: #3498db;
+      transition: color 0.3s ease;
+    }
+
+    i:hover {
+      color: #2980b9;
+    }
+
+    /* Improved spacing and layout */
+    main {
+      max-width: 1200px;
+      /* Increased max-width for images */
+      margin: 0 auto;
+    }
+
+    main {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Image Styling */
+    .image-container {
+      display: flex;         /* Use flexbox for layout */
+      flex-direction: column; /* Stack images vertically */
+      align-items: center;    /* Center images horizontally */
+      margin-top: 20px;
+    }
+
+    .image-container img {
+      max-width: 90%;       /* Make images fit container width */
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      margin-bottom: 10px;  /* Add some spacing between images */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Live Demo & Source Code links */
+    .demo-link {
+      color: #27ae60;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .demo-link:hover {
+      color: #2ecc71;
+      text-decoration: underline;
+    }
+
+    .code-link {
+      color: #c0392b;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .code-link:hover {
+      color: #e74c3c;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1><i class="fas fa-calculator"></i> UST Portfolio Market Risk VaR Calculator</h1>
+    <p>A robust tool for calculating Value at Risk (VaR) for a UST (United States Treasury) Portfolio, employing a
+      C# thick client GUI with a Python FastAPI server backend and SQL Server database.  This application helps
+      investors analyze and optimize their portfolio's market risk.</p>
+
+    <h2><i class="fas fa-info-circle"></i> Project Overview</h2>
+    <p>The application is designed to allow users to construct a portfolio of US Treasury securities and analyze its
+      market risk using Value at Risk (VaR) calculations. The following UST data is downloaded from the US Treasury
+      portal: 4-Week, 8-Week, 13-Week, 26-Week, and 52-Week securities.</p>
+    <p>Users can define a fixed income portfolio by assigning weights to these different securities, ensuring the sum of
+      the weights equals 1.0. The C# GUI then instructs the Python API server to calculate VaR for this portfolio using
+      two methods:</p>
+    <ul>
+      <li><strong>Historical Simulation:</strong>  A non-parametric approach using historical price data.</li>
+      <li><strong>Parametric Method:</strong> A statistical approach assuming a normal distribution of returns.</li>
+    </ul>
+    <p>VaR is calculated at both 95% and 99% confidence levels.</p>
+
+    <h2><i class="fas fa-star"></i> Key Features</h2>
+    <ul>
+      <li><strong>C# Thick Client GUI:</strong> User-friendly interface for easy portfolio construction, data input,
+        and result visualization.</li>
+      <li><strong>Python FastAPI Backend:</strong> High-performance API for serving VaR calculations and data
+        retrieval.</li>
+      <li><strong>SQL Server Database:</strong> Secure and scalable data storage for instrument data, portfolio
+        information, and historical market data.</li>
+      <li><strong>Comprehensive VaR Calculations:</strong> Supports Historical Simulation and Parametric VaR methodologies
+        with adjustable confidence levels.</li>
+      <li><strong>Interactive Visualizations:</strong> Yield and DV01 (Dollar Value of a Basis Point) analysis charts to
+        understand and optimize the portfolio risk profile.  Compare individual securities' yield and DV01 to the
+        overall portfolio.</li>
+    </ul>
+
+    <h2><i class="fas fa-wrench"></i> Technologies Used</h2>
+    <p><strong>Frontend:</strong> C# (Windows Forms)</p>
+    <p><strong>Backend:</strong> Python, FastAPI, Uvicorn</p>
+    <p><strong>Database:</strong> SQL Server</p>
+    <p><strong>API Architecture:</strong> RESTful APIs</p>
+
+    <h2><i class="fas fa-graduation-cap"></i> Challenges & Learnings</h2>
+    <ul>
+      <li><strong>Cross-Platform Integration:</strong> Integrating C# GUI with Python backend required efficient data
+        serialization and API design.</li>
+      <li><strong>Performance Optimization:</strong> Optimizing Python code for efficient VaR calculations to provide
+        near-real-time results.</li>
+      <li><strong>Data Handling:</strong> Designing a robust database schema in SQL Server to store and retrieve
+        large amounts of historical market data.</li>
+      <li><strong>User Interface:</strong> Building a user-friendly C# interface for interacting with the VaR calculator
+        and visualizing results.</li>
+    </ul>
+
+    <h2><i class="fas fa-chart-line"></i> Optimizing Portfolio Yield</h2>
+    <p>The GUI plots the yield and DV01 for all instruments along with the entire portfolio, providing a comparative
+      visual analysis. Users can identify which securities offer a better yield for a given level of DV01. Based on this
+      feedback, the portfolio weights can be adjusted to increase the overall portfolio yield while managing risk
+      exposure.</p>
+
+    <h2><i class="fas fa-images"></i> Screenshots</h2>
+    <p>Here are some screenshots showcasing the application's features and user interface:</p>
+
+    <div class="image-container">
+      <img src="../assets/PythonServer_SwaggerAPI.jpg" alt="FastAPI Swagger UI">
+      <img src="../assets/WinformsGUI_snapshot.jpg" alt="Yield and DV01 Analysis">
+      <img src="../assets/CSharpTGUI_PythonFAPI_UST_VarCalculator.png" alt="Overview Image">
+    </div>
+
+    <h2><i class="fab fa-github"></i> Source Code</h2>
+    <p>You can view and contribute to the source code on GitHub:</p>
+    <a href="https://github.com/cubes786/git/tree/main/vscode/showcase/csharp-python/UST_VarCalculator" class="code-link" target="_blank">Source Code</a>
+  </main>
+</body>
+
+</html>
