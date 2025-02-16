@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MicroGrad - Minimal Automatic Differentiation Engine</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      color: #444;
+      padding: 30px;
+      line-height: 1.7; /* Increased line height for readability */
+      font-size: 16px; /* Base font size */
+    }
+
+    h1,
+    h2 {
+      color: #34495e;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 3.0rem; /* Increased H1 size */
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 2.4rem; /* Increased H2 size */
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.2rem; /* Increased paragraph size */
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 15px 0;  /* Increased spacing in lists */
+      font-size: 1.2rem; /* Increased list item size */
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, text-decoration: 0.3s ease;
+    }
+
+    a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    /* Style for Icons */
+    i {
+      margin-right: 8px;
+      font-size: 1.3rem;  /* Increased icon size */
+      color: #3498db;
+      transition: color 0.3s ease;
+      vertical-align: middle; /* Align icons vertically with text */
+    }
+
+    i:hover {
+      color: #2980b9;
+    }
+
+    /* Improved spacing and layout */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 40px; /* Increased padding */
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Image Styling */
+    .image-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 25px; /* Increased margin */
+    }
+
+    .image-container img {
+      max-width: 90%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      margin-bottom: 15px; /* Increased margin */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .image-container p {
+      font-size: 1.1rem; /* Slightly reduced caption size */
+      text-align: center;
+      margin-bottom: 20px; /* Increased spacing after caption */
+    }
+
+    /* Live Demo & Source Code links */
+    .code-link {
+      color: #c0392b;
+      font-size: 1.3rem; /* Increased link size */
+      text-decoration: none;
+    }
+
+    .code-link:hover {
+      color: #e74c3c;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1><i class="fas fa-brain"></i> MicroGrad: A Tiny Autodiff Engine</h1>
+    <p>An educational project showcasing the principles of automatic differentiation for neural networks. Build and train simple networks with just a few lines of Python!</p>
+
+    <h2><i class="fas fa-info-circle"></i> Project Overview</h2>
+    <p>MicroGrad is a minimalistic automatic differentiation engine designed to demonstrate the core principles behind reverse-mode differentiation (backpropagation) in neural networks. With just a few lines of Python code, MicroGrad lets you build a computation graph dynamically and perform gradient-based optimization steps. This makes it an ideal educational tool for anyone looking to understand the low-level mechanics of deep learning frameworks.</p>
+
+    <h2><i class="fas fa-star"></i> Key Features</h2>
+    <ul>
+      <li><strong>Dynamic Computation Graph:</strong> Every arithmetic operation on <code>Value</code> objects automatically builds a directed acyclic graph (DAG). This graph captures both the forward pass values and references to parent nodes for backpropagation.</li>
+      <li><strong>Reverse-Mode Differentiation:</strong> A single <code>backward()</code> call on the output node traverses the graph in reverse to compute gradients for each node using the chain rule. This is exactly how modern deep learning frameworks calculate derivatives.</li>
+      <li><strong>Minimal, Extensible API:</strong> The core library is intentionally small and easy to read, allowing users to quickly understand and extend it. Adding custom operations, activations, or neural layers is straightforward.</li>
+      <li><strong>Neural Network Components:</strong> MicroGrad includes <code>Neuron</code>, <code>Layer</code>, and <code>MLP</code> classes, showcasing how to build and train simple neural networks (e.g., feed-forward networks) using its automatic differentiation engine.</li>
+      <li><strong>Educational Focus:</strong> The code is designed with clarity in mind, making it suitable for learning, experimentation, or prototyping new ideas without the overhead of a large framework.</li>
+      <li><strong>Enhanced Visual Clarity:</strong> Added label and color coding to the <code>Value</code> class to visually clarify data flow and computations, making it easier to grasp gradient logic and backpropagation.</li>
+    </ul>
+
+    <h2><i class="fas fa-wrench"></i> Technologies Used</h2>
+    <ul>
+      <li><strong>Python:</strong> Core logic and scripting.</li>
+      <li><strong>GraphViz (optional):</strong> Visualizing the computation graph in a user-friendly way.</li>
+      <li><strong>NumPy (optional):</strong> Certain numerical operations (though not strictly required).</li>
+      <li><strong>Jupyter Notebook (optional):</strong> Interactive demos and tutorials.</li>
+    </ul>
+    <p>(Note: The simplest MicroGrad setups only rely on standard Python libraries. Optional tools enhance functionality or visualization.)</p>
+
+    <h2><i class="fas fa-graduation-cap"></i> Challenges & Learnings</h2>
+    <ul>
+      <li><strong>Efficient Graph Construction:</strong> Balancing simplicity and clarity while building a flexible graph structure required careful design to keep the codebase minimal yet powerful.</li>
+      <li><strong>Backpropagation Mechanics:</strong> Ensuring correct gradient flow through each arithmetic operation (e.g., +, *, pow, relu) demanded a precise implementation of partial derivatives.</li>
+      <li><strong>Debugging & Visualization:</strong> Introducing GraphViz for graph rendering helped debug complex networks by clearly showing how values and operations connect.</li>
+      <li><strong>Scalability Trade-Off:</strong> While MicroGrad is primarily for small-scale experiments and educational purposes, implementing advanced optimizations (like vectorization or GPU support) can be non-trivial.</li>
+      <li><strong>Extensibility:</strong> Keeping the codebase lean sometimes means users must add features themselves—like additional activation functions or more sophisticated layers—promoting deeper understanding but requiring extra effort.</li>
+      <li><strong>Visual Enhancements:</strong> Implementing and integrating color coding and labels into the <code>Value</code> class for improved visual understanding of the backpropagation process.</li>
+    </ul>
+
+    <h2><i class="fas fa-chalkboard-teacher"></i> Inspiration and Adaptation</h2>
+    <p>This project is heavily inspired by Andrej Karpathy's excellent video tutorial on implementing a micrograd engine from scratch. My adaptation adds visual cues like explicit Type Labels and color coding to the core <code>Value</code> class.</p>
+
+    <h2><i class="fas fa-images"></i> Screenshots</h2>
+    <p>Illustrative examples:</p>
+
+    <div class="image-container">
+      <img src="../assets/micrograd/neuron1.png" alt="Simple Neuron with 2 inputs">
+      <p>Computation Graph: A GraphViz visualization showing inputs, parameters, and operations leading to an output
+        node.</p>
+
+      <img src="../assets/micrograd/mlp1.png" alt="An MLP with 2 layers and 2 inputs">
+      <p>Neuron/Layers: A small neural network diagram built from Neuron and Layer classes, highlighting parameter
+        flows.</p>
+
+    </div>
+
+    <h2><i class="fab fa-github"></i> Source Code</h2>
+    <p>You can view and contribute to the source code on GitHub:</p>
+    <a href="https://github.com/cubes786/git/tree/main/vscode/python3/projects/micrograd" class="code-link"
+      target="_blank">Source Code</a>
+  </main>
+</body>
+
+</html>
