@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local RAG App with ChromaDB, Langchain, and LM Studio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* General Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      color: #444;
+      padding: 30px;
+      line-height: 1.7; /* Increased line height for readability */
+      font-size: 16px; /* Base font size */
+    }
+
+    h1,
+    h2 {
+      color: #34495e;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 3.0rem; /* Increased H1 size */
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 2.4rem; /* Increased H2 size */
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.2rem; /* Increased paragraph size */
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 15px 0;  /* Increased spacing in lists */
+      font-size: 1.2rem; /* Increased list item size */
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, text-decoration: 0.3s ease;
+    }
+
+    a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    /* Style for Icons */
+    i {
+      margin-right: 8px;
+      font-size: 1.3rem;  /* Increased icon size */
+      color: #3498db;
+      transition: color 0.3s ease;
+      vertical-align: middle; /* Align icons vertically with text */
+    }
+
+    i:hover {
+      color: #2980b9;
+    }
+
+    /* Improved spacing and layout */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 40px; /* Increased padding */
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Image Styling */
+    .image-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 25px; /* Increased margin */
+    }
+
+    .image-container img {
+      max-width: 90%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      margin-bottom: 15px; /* Increased margin */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .image-container p {
+      font-size: 1.1rem; /* Slightly reduced caption size */
+      text-align: center;
+      margin-bottom: 20px; /* Increased spacing after caption */
+    }
+
+    /* Live Demo & Source Code links */
+    .code-link {
+      color: #c0392b;
+      font-size: 1.3rem; /* Increased link size */
+      text-decoration: none;
+    }
+
+    .code-link:hover {
+      color: #e74c3c;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1><i class="fas fa-search"></i> Local RAG App: ChromaDB, Langchain, and LM Studio</h1>
+    <p>A project demonstrating a Retrieval-Augmented Generation (RAG) application running locally, leveraging ChromaDB for document storage, Langchain for orchestration, and LM Studio to host a local LLM accessible via the OpenAI API.</p>
+
+    <h2><i class="fas fa-info-circle"></i> Project Overview</h2>
+    <p>This project implements a RAG system that allows you to query a collection of documents using a Large Language Model (LLM) running entirely on your local machine.  It utilizes ChromaDB to store and retrieve document embeddings, Langchain to build the RAG pipeline and LM Studio to run the LLM with an OpenAI compatible endpoint.</p>
+
+    <h2><i class="fas fa-star"></i> Key Features</h2>
+    <ul>
+      <li><strong>Local LLM:</strong> Uses LM Studio to host an LLM locally, ensuring data privacy and no external API dependencies.  LLM accessed via an OpenAI compatible API endpoint.</li>
+      <li><strong>ChromaDB Integration:</strong>  Employs ChromaDB for efficient storage and retrieval of document embeddings, enabling semantic search over the knowledge base.</li>
+      <li><strong>Langchain Orchestration:</strong>  Leverages Langchain to create and manage the RAG pipeline, including document loading, embedding generation, retrieval, and LLM querying.</li>
+      <li><strong>Document Processing:</strong> Includes functionality to load and process various document types (e.g., PDFs, text files) into a structured format suitable for embedding.</li>
+      <li><strong>Customizable Pipeline:</strong>  Allows for customization of various parameters, such as the embedding model, the LLM model, and the retrieval strategy.</li>
+      <li><strong>Easy Setup:</strong>  Provides clear instructions and scripts for setting up the environment and running the application.</li>
+    </ul>
+
+    <h2><i class="fas fa-wrench"></i> Technologies Used</h2>
+    <ul>
+      <li><strong>Python:</strong> Core logic and scripting.</li>
+      <li><strong>Langchain:</strong>  Framework for building LLM applications.</li>
+      <li><strong>ChromaDB:</strong> Vector database for storing document embeddings.</li>
+      <li><strong>LM Studio:</strong> Application for running LLMs locally.</li>
+      <li><strong>OpenAI API (via LM Studio):</strong> Used to access the local LLM.</li>
+    </ul>
+
+    <h2><i class="fas fa-graduation-cap"></i> Challenges & Learnings</h2>
+    <ul>
+      <li><strong>Local LLM Configuration:</strong>  Setting up and configuring LM Studio to host an LLM and expose it via an OpenAI compatible API endpoint required troubleshooting and understanding of various configuration options.</li>
+      <li><strong>Embedding Model Selection:</strong>  Choosing the right embedding model for optimal retrieval performance involved experimentation and evaluation of different models.</li>
+      <li><strong>Langchain Pipeline Design:</strong>  Designing an efficient and robust RAG pipeline with Langchain required a deep understanding of its components and their interactions.</li>
+      <li><strong>Data Processing and Chunking:</strong>  Optimizing document processing and chunking strategies to balance retrieval accuracy and query latency was crucial for performance.</li>
+      <li><strong>Resource Constraints:</strong>  Running the LLM and vector database locally presented resource constraints that needed to be addressed through optimization techniques.</li>
+    </ul>
+
+    <h2><i class="fas fa-images"></i> Architecture Diagram (Illustrative)</h2>
+
+    <div class="image-container">
+      <img src="placeholder_architecture_diagram.png" alt="RAG Architecture Diagram">
+      <p>Illustrative Architecture (TBA): Shows the data flow from document ingestion, through embedding and storage in ChromaDB, to querying the LLM via Langchain.</p>
+    </div>
+
+    <h2><i class="fas fa-cogs"></i> Setup Instructions</h2>
+    <p>TBA
+    </p>
+
+    <h2><i class="fab fa-github"></i> Source Code</h2>
+    <p>You can view and contribute to the source code on GitHub:</p>
+    <a href="https://github.com/cubes786/git/tree/main/vscode/showcase/langchain-RAG" class="code-link"
+      target="_blank">Source Code</a>
+  </main>
+</body>
+
+</html>
