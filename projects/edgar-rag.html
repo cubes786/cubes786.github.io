@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDGAR RAG - Hybrid BM25 + Qdrant Financial QA</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      color: #444;
+      padding: 30px;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    h1,
+    h2 {
+      color: #34495e;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 3.0rem;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 15px 0;
+      font-size: 1.2rem;
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    i {
+      margin-right: 8px;
+      font-size: 1.3rem;
+      color: #3498db;
+      transition: color 0.3s ease;
+      vertical-align: middle;
+    }
+
+    i:hover {
+      color: #2980b9;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    }
+
+    .image-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 25px;
+    }
+
+    .image-container img {
+      max-width: 90%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      margin-bottom: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .image-container p {
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .code-link {
+      color: #c0392b;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .code-link:hover {
+      color: #e74c3c;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1><i class="fas fa-file-invoice-dollar"></i> EDGAR RAG: Hybrid BM25 + Qdrant Retrieval for Financial QA</h1>
+    <p>A production-style Retrieval-Augmented Generation pipeline for SEC filings that combines lexical BM25 and dense vector search to answer filing-grounded financial questions with citations.</p>
+
+    <h2><i class="fas fa-info-circle"></i> Project Overview</h2>
+    <p>This project focuses on the hard part of finance RAG: reliable retrieval over long filings and semi-structured tables. It parses EDGAR HTML filings, preserves table structure, builds section-aware chunks, and runs hybrid retrieval using BM25 + Qdrant ANN vectors before passing context to an LLM for grounded answer generation.</p>
+
+    <h2><i class="fas fa-star"></i> Key Features</h2>
+    <ul>
+      <li><strong>Hybrid Retrieval:</strong> Score fusion across BM25 lexical ranking and dense semantic vectors from OpenAI embeddings.</li>
+      <li><strong>Qdrant Vector Index:</strong> Local/remote Qdrant integration for low-latency ANN retrieval with metadata filters by ticker, filing type, and year.</li>
+      <li><strong>Table-Aware Strategy:</strong> HTML tables are summarized for retrieval while original table HTML is preserved for generation-time reasoning.</li>
+      <li><strong>Section-Aware Chunking:</strong> Filing text is chunked with overlap and tied to SEC item sections for better citation quality.</li>
+      <li><strong>Reranking Layer:</strong> Optional reranker combines lexical overlap and numeric overlap signals to prioritize answerable chunks.</li>
+      <li><strong>Citation-Backed QA:</strong> Model outputs include chunk IDs that map directly to retrieved contexts for traceability.</li>
+    </ul>
+
+    <h2><i class="fas fa-wrench"></i> Technologies Used</h2>
+    <ul>
+      <li><strong>Python:</strong> Core pipeline and orchestration.</li>
+      <li><strong>OpenAI API:</strong> Embeddings and answer generation.</li>
+      <li><strong>Qdrant:</strong> Vector database for dense retrieval.</li>
+      <li><strong>Unstructured:</strong> HTML partitioning and table extraction.</li>
+      <li><strong>Streamlit + FastAPI:</strong> Interactive QA interface and health API.</li>
+    </ul>
+
+    <h2><i class="fas fa-graduation-cap"></i> Challenges & Learnings</h2>
+    <ul>
+      <li><strong>Sparse vs Dense Trade-offs:</strong> BM25 catches exact financial terms while dense retrieval improves semantic recall; balancing both materially improved top-k relevance.</li>
+      <li><strong>Table Handling:</strong> Preserving table HTML prevented information loss common in plain-text flattening for financial statements.</li>
+      <li><strong>Metadata Precision:</strong> Strict ticker/year/form filtering reduced cross-filing contamination and improved factual precision.</li>
+      <li><strong>Evaluation Discipline:</strong> Added faithfulness, relevance, and citation-precision checks to make quality measurable and reproducible.</li>
+    </ul>
+
+    <h2><i class="fas fa-project-diagram"></i> Architecture Diagram</h2>
+    <div class="image-container">
+      <img src="../assets/edgar-rag/Edgar_RAG_Architecture1.jpg" alt="EDGAR RAG architecture diagram showing ingestion, hybrid retrieval, reranking, and generation flow">
+      <p>End-to-end system flow: EDGAR ingestion -> parsing/chunking -> BM25 + Qdrant hybrid retrieval -> reranking -> citation-backed LLM answers.</p>
+    </div>
+
+    <h2><i class="fas fa-images"></i> Screenshots</h2>
+    <p><strong>Demo Walkthrough:</strong> these three screens show the core EDGAR-RAG value path in order: precise retrieval, financial reasoning, and citation-level auditability.</p>
+    <div class="image-container">
+      <img src="../assets/edgar-rag/Edgar_RAG_Query1.jpg" alt="EDGAR RAG demo query output showing citation-backed answer">
+      <p>1) Risk Retrieval Precision: hybrid BM25 + Qdrant retrieval surfaces the exact Risk Factors evidence and returns a cited answer.</p>
+
+      <img src="../assets/edgar-rag/Edgar_RAG_Query2.jpg" alt="EDGAR RAG financial calculation response with formatted output">
+      <p>2) Calculation Fidelity: the system performs table-grounded financial math, shows step-by-step formulas, and cites supporting chunks.</p>
+
+      <img src="../assets/edgar-rag/Edgar_RAG_Query3.jpg" alt="EDGAR RAG metadata-filtered retrieval in Streamlit interface">
+      <p>3) Citation Traceability: metadata-filtered QA (`ticker/year/form`) with auditable context so every claim can be inspected at source.</p>
+    </div>
+
+    <h2><i class="fas fa-cogs"></i> Setup Instructions</h2>
+    <p>Configure `.env`, start Qdrant, run ingestion/parsing/indexing scripts, then launch the Streamlit app for interactive filing QA. The repository includes CLI modules for each pipeline stage so experiments are reproducible end-to-end.</p>
+
+    <h2><i class="fab fa-github"></i> Source Code</h2>
+    <p>You can view and contribute to the source code on GitHub:</p>
+    <a href="https://github.com/cubes786/edgar-rag" class="code-link" target="_blank">Source Code</a>
+  </main>
+</body>
+
+</html>
